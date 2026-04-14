@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Aggregator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      color: #FFFFFF;
+    }
+
+    .container {
+      background-color: rgba(44, 62, 80, 0.8);
+      border-radius: 15px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #6200EA 0%, #7C4DFF 60%, #4A00E0 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      width: 100%;
+      text-decoration: none;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      line-height: 1;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid rgba(255,255,255,0.6);
+      outline-offset: 2px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.28);
+    }
+
+    /* Стили для кнопки регистрации, чтобы она точно выровнялась по ширине */
+    .register {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%; /* выравнивание по ширине контейнера */
+      position: relative;
+      padding: 14px 20px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(135deg, #FF4081 0%, #FF3D00 100%);
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      user-select: none;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+
+    .register:hover {
+      transform: translateY(-0.5px) scale(1.01);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.28);
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    p {
+      margin-top: 20px;
+      color: #E0E0E0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the AI Aggregator!</h1>
+    <button class="btn" onclick="location.href='login'">Log In</button>
+      <p>If you don't have an account yet,</p>
+      <a href="register" class="register" role="button" aria-label="Register">
+      Register Now
+      </a></div>
+</body>
+</html>
