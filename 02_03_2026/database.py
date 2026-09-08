@@ -1,5 +1,5 @@
 from mysql.connector import connect
-from config import host, user, password
+from config import host, user, password, db_name
 
 
 class Database:
@@ -7,7 +7,8 @@ class Database:
         self.connection = connect(
             host=host,
             user=user,
-            password=password
+            password=password,
+            database=db_name
         )
 
         self.cursor = self.connection.cursor()
@@ -28,12 +29,8 @@ class Database:
     def add_user(self, name: str, email: str, password: str):
         self.__init__()
 
-        select = f"INSERT INTO users (name, email, password, register_gate) VALUES ({name}, {email}, {password}, "
+        select = f"INSERT INTO users (username, email, password_hash) VALUES ('{name}', '{email}', '{password}');"
         self.cursor.execute(select)
 
-        info = self.cursor.fetchone()
+        self.connection.commit()
         self.connection.close()
-
-        date = info[0]
-
-        return date

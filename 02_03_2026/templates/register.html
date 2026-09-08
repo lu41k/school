@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../script.js"></script>
+<script src="script.js"></script>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -163,24 +163,13 @@
 </div>
 
 <script>
-  // Обработка кнопки закрытия
   const closeBtn = document.getElementById('closeBtn');
   closeBtn.addEventListener('click', () => {
-    // Плавное исчезновение контейнера
     document.querySelector('.container').style.transition = 'opacity 300ms ease';
     document.querySelector('.container').style.opacity = '0';
     setTimeout(() => {
-      // Перенаправление или скрытие контейнера
       window.location.href = '/'; // или просто hide: document.querySelector('.container').style.display='none';
     }, 320);
-  });
-  document.getElementById('submitBtn').addEventListener('click', function(event) {
-      event.preventDefault();
-    if (typeof processForm === 'function') {
-      processForm();
-    } else {
-      console.error('Функция processForm не найдена в script.js');
-    }
   });
 </script>
 </body>
