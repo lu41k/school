@@ -27,3 +27,29 @@ $(document).ready(function () {
         }
     });
 });
+
+
+$(document).ready(function () {
+    $("#login-user").on("submit", function (e) {
+        e.preventDefault();
+
+        var email = $("#email").val().trim();
+        var password = $("#password").val().trim();
+
+        var errorState =
+            email === "" ||
+            password === "";
+
+        if (!errorState) {
+            $.ajax({
+                url: "/login-user",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+        }
+    });
+});

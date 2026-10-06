@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="script.js"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -150,7 +152,7 @@
     <button class="close-btn" id="closeBtn" aria-label="Close and return to main menu">×</button>
 
     <h1>Welcome to the AI Aggregator!</h1>
-    <form action="#" method="post">
+    <form action="/login-user" method="post" id="login-user">
       <div class="field">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required placeholder="Enter your email">
@@ -161,7 +163,7 @@
         <input type="password" id="password" name="password" required placeholder="Enter your password">
       </div>
 
-      <button class="btn" type="submit">Log In</button>
+      <button class="btn" type="submit" id="submitBtn">Log In</button>
     </form>
 
     <p>Don't have an account yet?</p>
@@ -171,11 +173,8 @@
   </div>
 
   <script>
-    // Простая навигация по кнопке закрытия
     const closeBtn = document.getElementById('closeBtn');
     closeBtn.addEventListener('click', () => {
-      // плавный переход к главному меню
-      // можно добавить анимацию закрытия, затем перенаправление
       document.body.style.transition = 'opacity 300ms ease';
       document.body.style.opacity = '0';
       setTimeout(() => {
