@@ -1,6 +1,7 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from database import Database
 from hash_function import get_hash_password
+from functools import wraps
 import werkzeug.exceptions as exc
 
 
@@ -8,19 +9,52 @@ app = Flask(__name__)
 db = Database()
 
 
+def login_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if "email" not in session:
+            return redirect(url_for("login", next=request.path))
+        return view(*args, **kwargs)
+    return wrapped_view
+
+
 @app.route("/")
 def welcome_func():
+    if "email" in session:
+        return redirect(url_for("profile"))
+
     return render_template("index.html")
 
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    if "email" in session:
+        return redirect(url_for("profile"))
+
     return render_template("login.html")
 
 
 @app.route("/register")
 def registration():
+    if "email" in session:
+        return redirect(url_for("profile"))
+
     return render_template("register.html")
+
+
+@app.route("/profile")
+@login_required
+def profile():
+    user = get_db().execute(
+        "SELECT username, email FROM users WHERE id = ?",
+        (session["user_id"],)
+    ).fetchone()
+
+    if user is None:
+        session.clear()
+        return redirect(url_for("login"))
+
+    return render_template("profile.html", user=user)
 
 
 @app.route("/add-user", methods=["POST"])
@@ -43,6 +77,9 @@ def adding_user():
 
 @app.route("/login-user", methods=["POST"])
 def log_in_user():
+    if "email" in session:
+        return redirect(url_for("profile"))
+
     email = request.form.get("email")
     password = request.form.get("password")
 
@@ -53,7 +90,10 @@ def log_in_user():
     if get_hash_password(password) != password_in_db:
         return jsonify({"error": "Incorrect password"}), 401
 
-    return render_template("index.html")
+    session.clear()
+    session["user_id"] = email
+
+    return redirect(url_for("profile"))
 
 
 @app.errorhandler(exc.HTTPException)

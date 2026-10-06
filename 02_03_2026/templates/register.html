@@ -172,5 +172,12 @@
     }, 320);
   });
 </script>
+{% with messages = get_flashed_messages(category_filter=['error']) %}
+      {% if messages %}
+        <div class="flash">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
 </body>
 </html>
